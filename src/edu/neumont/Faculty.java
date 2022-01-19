@@ -9,6 +9,10 @@ public class Faculty extends Person {
     private boolean fulltime;
     private ArrayList<Course> courses = new ArrayList<>();
 
+    public Faculty() {
+
+    }
+
     public Faculty(String name, int dob, int officeNumber, int officeHours, boolean fulltime) {
         super(name, dob);
         this.officeNumber = officeNumber;

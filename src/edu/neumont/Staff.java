@@ -7,6 +7,8 @@ public class Staff extends Person{
     private String jobTitle;
     private ArrayList<Student> students = new ArrayList<>();
 
+    public Staff() {}
+
     public Staff(String name, int dob, String jobTitle) {
         super(name, dob);
         this.jobTitle = jobTitle;

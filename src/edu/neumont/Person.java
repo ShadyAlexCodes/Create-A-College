@@ -10,6 +10,9 @@ public class Person {
         this.dob = dob;
     }
 
+    public Person() {
+    }
+
     public boolean compareName(String name) {
         return this.name.equalsIgnoreCase(name);
     }

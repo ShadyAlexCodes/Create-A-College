@@ -8,6 +8,8 @@ public class Student extends Person {
     private Staff staff;
     private ArrayList<Course> courses = new ArrayList<>();
 
+    public Student() {}
+
     public Student(String name, int dob, double gpa, Staff staff, ArrayList<Course> courses) {
         super(name, dob);
         this.gpa = gpa;
