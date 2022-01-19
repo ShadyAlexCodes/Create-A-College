@@ -1,0 +1,50 @@
+package edu.neumont;
+
+import java.util.Scanner;
+
+public class Console {
+
+    static Scanner scanner = new Scanner(System.in);
+
+    static String getUserInput(String prompt) {
+        System.out.println(prompt);
+        return scanner.nextLine();
+    }
+
+    static int getInteger(String prompt) {
+        int i = 0;
+
+        boolean valid = false;
+        while (!valid) {
+            String string = getUserInput(prompt);
+            try {
+                i = Integer.parseInt(string);
+                valid = true;
+            }
+            catch (NumberFormatException ex) {
+                System.out.println("You have entered an invalid number.");
+            }
+        }
+
+        return i;
+    }
+
+    static float getFloat(String prompt) {
+        float i = 0;
+
+        boolean valid = false;
+        while (!valid) {
+            String string = getUserInput(prompt);
+            try {
+                i = Float.parseFloat(string);
+                valid = true;
+            }
+            catch (NumberFormatException ex) {
+                System.out.println("You have entered an invalid number.");
+            }
+        }
+
+        return i;
+    }
+
+}
