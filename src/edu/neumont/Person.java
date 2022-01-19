@@ -17,4 +17,11 @@ public class Person {
         return this.name.equalsIgnoreCase(name);
     }
 
+    @Override
+    public String toString() {
+        return "Person{" +
+                "name='" + name + '\'' +
+                ", dob=" + dob +
+                '}';
+    }
 }
