@@ -4,6 +4,19 @@ import java.util.ArrayList;
 
 public class College {
 
+    enum PersonType {
+        STUDENT,
+        FACULTY,
+        STAFF
+    }
+
+    enum Menu {
+        ADD,
+        REMOVE,
+        VIEW,
+        QUIT
+    }
+
     private final ArrayList<Faculty> faculty = new ArrayList<>();
     private final ArrayList<Student> students = new ArrayList<>();
     private final ArrayList<Staff> staff = new ArrayList<>();
@@ -33,19 +46,20 @@ public class College {
             System.out.println(" ");
             System.out.println("-----------------------------");
 
-            int selection = Console.getInteger("Enter selection: ");
+            int selection = Console.getInteger("Enter selection: ", 1, 4);
+            Menu menu = Menu.values()[selection - 1];
 
-            switch (selection) {
-                case 1:
+            switch (menu) {
+                case ADD:
                     add();
                     break;
-                case 2:
+                case REMOVE:
                     remove();
                     break;
-                case 3:
+                case VIEW:
                     view();
                     break;
-                case 4:
+                case QUIT:
                     quit = true;
                     break;
                 default:
@@ -56,24 +70,24 @@ public class College {
 
     private void add() {
 
-        int type = getPersonType();
+        PersonType type = getPersonType();
         String name = Console.getUserInput("Enter their name: ");
         int dob = Console.getInteger("Enter their year of birth: ");
 
         switch (type) {
-            case 1:
+            case STUDENT:
                 // User input
                 double GPA = Console.getFloat("Enter the students GPA");
                 students.add(new Student(name, dob, GPA, null));
                 break;
-            case 2:
+            case FACULTY:
                 // User input
                 int officeNumber = Console.getInteger("Enter office number: ");
                 int officeHours = Console.getInteger("Enter office hours: ");
                 boolean fulltime = Console.getUserInput("Fulltime (y/n): ").equalsIgnoreCase("y");
                 faculty.add(new Faculty(name, dob, officeNumber, officeHours, fulltime));
                 break;
-            case 3:
+            case STAFF:
                 // User input
                 String jobTitle = Console.getUserInput("Enter job title: ");
                 staff.add(new Staff(name, dob, jobTitle));
@@ -84,12 +98,12 @@ public class College {
 
     private void remove() {
 
-        int type = getPersonType();
+        PersonType type = getPersonType();
 
         String name = Console.getUserInput("Enter name: ");
 
         switch (type) {
-            case 1:
+            case STUDENT:
                 for (Student student : students) {
                     if (student.compareName(name)) {
                         this.students.remove(student);
@@ -101,7 +115,7 @@ public class College {
                     }
                 }
                 break;
-            case 2:
+            case FACULTY:
                 for (Faculty faculty : faculty) {
                     if (faculty.compareName(name)) {
                         this.faculty.remove(faculty);
@@ -113,7 +127,7 @@ public class College {
                     }
                 }
                 break;
-            case 3:
+            case STAFF:
                 for (Staff staff : staff) {
                     if (staff.compareName(name)) {
                         this.staff.remove(staff);
@@ -130,20 +144,20 @@ public class College {
     }
 
     private void view() {
-        int type = getPersonType();
+        PersonType type = getPersonType();
 
         switch (type) {
-            case 1:
+            case STUDENT:
                 for (Student student : students) {
                     System.out.println(student);
                 }
                 break;
-            case 2:
+            case FACULTY:
                 for (Faculty faculty : faculty) {
                     System.out.println(faculty);
                 }
                 break;
-            case 3:
+            case STAFF:
                 for (Staff staff : staff) {
                     System.out.println(staff);
                 }
@@ -151,7 +165,7 @@ public class College {
         }
     }
 
-    private int getPersonType() {
+    private PersonType getPersonType() {
         System.out.println("-----------------------------");
         System.out.println(" ");
         System.out.println("(1) Student");
@@ -160,7 +174,10 @@ public class College {
         System.out.println(" ");
         System.out.println("-----------------------------");
 
-        return Console.getInteger("Enter selection: ");
+        int selection = Console.getInteger("Enter selection: ", 1, 3);
+        PersonType type = PersonType.values()[selection - 1];
+
+        return type;
     }
 /*
 
